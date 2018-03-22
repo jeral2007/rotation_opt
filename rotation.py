@@ -40,12 +40,15 @@ def dquart_mat(q):
     dRda = sc.array([[2*a, -2*d, 2*c],
                      [2*d, 2*a, -2*b],
                      [-2*c, 2*b, 2*a]])
+
     dRdb = sc.array([[2*b, 2*c, 2*d],
-                     [2*c, -2*b, 2*a],
+                     [2*c, -2*b, -2*a],
                      [2*d, 2*a, -2*b]])
+
     dRdc = sc.array([[-2*c, 2*b, 2*a],
                      [2*b, 2*c, 2*d],
                      [-2*a, 2*d, -2*c]])
+
     dRdd = sc.array([[-2*d, -2*a, 2*b],
                      [2*a, -2*d, 2*c],
                      [2*b, 2*c, 2*d]])
