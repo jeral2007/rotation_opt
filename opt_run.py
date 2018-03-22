@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import scipy as sc
+import scipy.optimize as scopt
 from coord_parse import *
-from rotation import  quart_mat, dquart_mat
+from rotation import quart_mat, dquart_mat
 
 class TurboRun:
     eps = 1e-7
@@ -84,3 +85,7 @@ print "grad = {}".format(run.get_gradients(params))
 print "-----------"
 print run.blocks
 print "-----------"
+print params
+res = scopt.minimize(run.get_energy, params, method='BFGS',
+                     jac=run.get_gradients, options={'maxiter': 10,
+                                                     'disp': True})
