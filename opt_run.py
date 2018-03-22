@@ -3,7 +3,7 @@ import scipy as sc
 import scipy.optimize as scopt
 from coord_parse import *
 from rotation import quart_mat, dquart_mat
-
+import sys
 class TurboRun:
     eps = 1e-7
 
@@ -76,8 +76,10 @@ class TurboRun:
             self._runTurbo_()
         return self.gradients
 
+pat_file = sys.argv[1]
+maxiter = sys.argv[2]
 
-run = TurboRun('coord_test')
+run = TurboRun(pat_file)
 params = sc.array(run.last_params)
 print "E = {}".format(run.get_energy(params))
 print "r, q = {}".format(params)
@@ -87,5 +89,5 @@ print run.blocks
 print "-----------"
 print params
 res = scopt.minimize(run.get_energy, params, method='BFGS',
-                     jac=run.get_gradients, options={'maxiter': 10,
+                     jac=run.get_gradients, options={'maxiter': maxiter,
                                                      'disp': True})
